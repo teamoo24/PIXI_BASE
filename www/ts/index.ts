@@ -43,7 +43,7 @@ window.onload = () => {
         
         function createPlayerSheet() {
             //@ts-ignore
-            let ani_texture:BaseTexture = new PIXI.BaseTexture.from(app.loader.resources["char1"].url)
+            let ani_texture:PIXI.BaseTexture = new PIXI.BaseTexture.from(app.loader.resources["char1"].url)
             ani_array = new Array();
             let w = 32;
             let h = 32;
