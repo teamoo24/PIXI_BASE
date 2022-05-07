@@ -1,15 +1,20 @@
 import * as PIXI from 'pixi.js'
+import { BaseTexture, Rectangle } from 'pixi.js';
 
 const win_w:number = window.innerWidth;
 const win_h:number = window.innerHeight;
-const char_rec:PIXI.Rectangle= new PIXI.Rectangle(0,0,32,32);
+
+const w:number = 32;
 
 const img_array:Array<String> = new Array("png","jpg")
+
+const char_rec:PIXI.Rectangle= new PIXI.Rectangle(0,0,32,32);
 
 let texture_dic:{
     [name:string]:PIXI.Texture|undefined;
 } = {};
 
+let ani_array:Array<PIXI.Texture>;
 let app:PIXI.Application;
 
 
@@ -27,13 +32,36 @@ window.onload = () => {
 
         check_resource(app.loader.resources);
 
-        texture_dic["char1"] = make_frame(texture_dic["char1"],char_rec);
+        //固定熊
+        //texture_dic["char1"] = make_frame(texture_dic["char1"],char_rec);
 
-        let char1 = new PIXI.Sprite(texture_dic["char1"]);
+        //let char1 = new PIXI.Sprite(texture_dic["char1"]);
+
+        //アニメ熊
+
+        createPlayerSheet();
+        
+        function createPlayerSheet() {
+            //@ts-ignore
+            let ani_texture:BaseTexture = new PIXI.BaseTexture.from(app.loader.resources["char1"].url)
+            ani_array = new Array();
+            let w = 32;
+            let h = 32;
+            for(let i=0;i<3; i++) {
+                ani_array[i] = new PIXI.Texture(ani_texture,new PIXI.Rectangle(i*w,0,w,h))
+            }
+        }
+        console.log(ani_array)
+
+        let char1 = new PIXI.AnimatedSprite(ani_array);
+        char1.animationSpeed= 0.1;
+
+        console.log(char1)
 
         char1.x = 50;
         char1.y = 50;
-        
+        char1.play();
+
         app.stage.addChild(char1);
 
         app.start();
@@ -67,3 +95,4 @@ let make_frame = (texture:PIXI.Texture|undefined, rect:PIXI.Rectangle):PIXI.Text
         throw new Error("check_frameエラー")
     }
 }
+

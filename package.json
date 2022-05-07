@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "displayName": "Monaca Template Minimum",
   "dependencies": {
-    "@types/pixi.js": "^5.0.0",
     "cordova-plugin-splashscreen": "6.0.0",
     "monaca-plugin-monaca-core": "3.3.1",
     "pixi.js": "^6.3.0",
@@ -15,7 +14,8 @@
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "tscwatch": "tsc --watch"
   },
   "cordova": {
     "plugins": {
@@ -24,8 +24,9 @@
     }
   },
   "devDependencies": {
-    "@webpack-cli/generators": "^2.4.2",
-    "browser-sync": "~2.27.7",
+    "@types/pixi.js": "^5.0.0",
+    "@webpack-cli/generators": "^1.1.0",
+    "browser-sync": "^2.27.9",
     "cordova": "^11.0.0",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2"
