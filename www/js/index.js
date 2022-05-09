@@ -48,8 +48,7 @@ window.onload = () => {
         //アニメ熊
         createPlayerSheet();
         function createPlayerSheet() {
-            //@ts-ignore
-            let ani_texture = new PIXI.BaseTexture.from(app.loader.resources["char1"].url);
+            let ani_texture = PIXI.BaseTexture.from(app.loader.resources["char1"].url);
             ani_array = new Array();
             let w = 32;
             let h = 32;
